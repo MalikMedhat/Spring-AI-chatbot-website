@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Generator</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f4f6f9; min-height: 100vh; }
+        nav { background: #fff; border-bottom: 1px solid #ddd; padding: 16px; display: flex; justify-content: center; gap: 12px; }
+        nav a { padding: 10px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; color: #555; background: #eee; }
+        nav a.active, nav a:hover { background: #2563eb; color: #fff; }
+        .container { max-width: 780px; margin: 48px auto; padding: 0 20px; }
+        h1 { text-align: center; font-size: 2rem; margin-bottom: 28px; color: #1e293b; }
+        .form-group { margin-bottom: 16px; }
+        label { display: block; font-weight: 600; margin-bottom: 6px; color: #475569; }
+        input[type=text] { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; }
+        button { display: block; margin: 20px auto 0; padding: 12px 40px; background: #2563eb; color: #fff; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; }
+        button:hover { background: #1d4ed8; }
+        .response-box { margin-top: 28px; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; white-space: pre-wrap; line-height: 1.8; color: #334155; }
+        .label { font-weight: 600; color: #64748b; margin-bottom: 8px; font-size: 0.9rem; }
+        .loading { display: none; text-align: center; margin-top: 16px; color: #64748b; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="/image">Image Generator</a>
+    <a href="/chat">Chat</a>
+    <a href="/recipe" class="active">Recipe Generator</a>
+</nav>
+
+<div class="container">
+    <h1>🍽️ Recipe Generator</h1>
+
+    <form method="post" action="/recipe" onsubmit="document.getElementById('loading').style.display='block'">
+        <div class="form-group">
+            <label>Ingredients (required)</label>
+            <input type="text" name="ingredients"
+                   placeholder="e.g. chicken, garlic, tomatoes, pasta"
+                   th:value="${ingredients}" required />
+        </div>
+        <div class="form-group">
+            <label>Cuisine Type (optional)</label>
+            <input type="text" name="cuisine"
+                   placeholder="e.g. Italian, Egyptian, Asian"
+                   th:value="${cuisine}" />
+        </div>
+        <div class="form-group">
+            <label>Dietary Restrictions (optional)</label>
+            <input type="text" name="dietaryRestrictions"
+                   placeholder="e.g. vegetarian, gluten-free"
+                   th:value="${dietaryRestrictions}" />
+        </div>
+        <button type="submit">Generate Recipe</button>
+    </form>
+
+    <div class="loading" id="loading">⏳ Generating recipe... (may take a few seconds)</div>
+
+    <div class="response-box" th:if="${recipe}">
+        <div class="label">Generated Recipe:</div>
+        <span th:text="${recipe}"></span>
+    </div>
+</div>
+
+</body>
+</html>
