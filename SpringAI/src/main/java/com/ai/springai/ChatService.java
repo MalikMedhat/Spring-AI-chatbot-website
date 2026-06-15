@@ -1,24 +1,20 @@
 package com.ai.springai;
 
-import org.springframework.ai.chat.model.ChatModel;
-import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ai.chat.model.ChatModel; // الـ Import المعياري الجديد
 import org.springframework.stereotype.Service;
 
 @Service
 public class ChatService {
 
     @Autowired
-    private ChatModel chatModel;
+    private ChatModel chatModel; // الجافا هيلقط لوحده إن ده Groq من الـ properties
 
-    public String chat(String userMessage) {
+    public String chat(String prompt) {
         try {
-            return chatModel.call(new Prompt(userMessage))
-                    .getResult()
-                    .getOutput()
-                    .getContent();
+            return chatModel.call(prompt); // استدعاء الموديل
         } catch (Exception e) {
-            return "Error: " + e.getMessage() + ". Make sure Ollama is running on port 11434.";
+            return "Error calling Groq API: " + e.getMessage();
         }
     }
 }
