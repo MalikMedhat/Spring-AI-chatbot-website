@@ -1,1 +1,2 @@
 A High-Performance, Cloud-Deployed Generative AI Platform built with Spring Boot 3 and Spring AI. It leverages an OpenAI-compatible architecture to orchestrate real-time chat and intelligent content generation via Groq Cloud Services (utilizing the Llama 3.1 model) with zero local overhead.
+​🌐 Live Demo: Spring-ai-chatbot-website-production.up.railway.app
