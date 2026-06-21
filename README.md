@@ -3,5 +3,5 @@ A High-Performance, Cloud-Deployed Generative AI Platform built with Spring Boot
 ​🌐 Live Demo:
 [Spring-ai-chatbot-website-production.up.railway.app](https://spring-ai-chatbot-website-production.up.railway.app/chat
 
-NOTE: You can add any AI api key you want to chat with just change the API and set the model you like
+NOTE: You can add any model you want to chat with just change the API key and set the model you like
 
